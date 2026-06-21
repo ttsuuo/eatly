@@ -803,7 +803,7 @@ span {
         color: $color-light;
         border-radius: 15px;
         margin-top: 45px;
-        font-family: var(--font-family-accent), sans-serif;
+        font-family: var(--font-family-accent);
 
         @include tablet {
             font-size: 13px;
