@@ -1,0 +1,208 @@
+@use '../utils' as *;
+
+.header {
+
+    &__inner {
+        @include d-flex(space-between, center);
+        column-gap: 20px;
+        padding-top: 28px;
+        padding-bottom: 18px;
+
+        &--with-line {
+            @extend %bottom-line;
+        }
+
+        @include tablet {
+            padding-top: 20px;
+            padding-bottom: 5px;
+        }
+
+        @include mobile {
+            position: relative;
+            row-gap: 5px;
+            padding-bottom: 10px;
+        }
+
+        @include small-mobile {
+            padding-top: 75px;
+        }
+    }
+
+    .logo {
+        @include d-flex($align: center);
+        flex-shrink: 0;
+        column-gap: 12px;
+        font-family: $font-family-accent;
+        font-size: 21px;
+        text-decoration: none;
+        color: $color-purple;
+        font-weight: 600;
+
+        @include tablet {
+            
+            .logo {
+
+                &__image {
+                    width: 33px;
+                    height: 30px;
+                }
+
+                &__text {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        @include mobile {
+            position: absolute;
+            top: 15px;
+        }
+    }
+
+    &__burger-btn {
+        display: none;
+        position: relative;
+        width: 34px;
+        height: 25px;
+        border: none;
+        background-color: transparent;
+        z-index: 2;
+
+        span {
+            @include p-absolute(32px, 2px, left, top, 1px);
+            background-color: black;
+            transition: background-color $transition-duration, opacity .3s, transform .5s ;
+            will-change: transform;
+
+            &:nth-child(1) {
+                transform: translateY(-11px);
+            }
+
+            &:nth-child(3) {
+                transform: translateY(11px);
+            }
+        }
+
+        @include small-mobile {
+            display: block;
+            position: absolute;
+            z-index: 1001;
+            top: 43px;
+            right: 0;
+        }
+    }
+
+    &.open {
+
+        .header__burger-btn {
+
+            span {
+                background-color: $color-light;
+
+                &:nth-child(1) {
+                    transform: translateY(0) rotate(45deg);
+                }
+
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+
+                &:nth-child(3) {
+                    transform: translateY(0) rotate(-45deg);
+                }
+            }
+        }
+
+        @include small-mobile {
+            .header__content {
+                transform: translateX(-100%);
+                visibility: visible;
+            }
+        }
+    }
+
+    &__content {
+        @include d-flex(space-between, center);
+        width: 100%;
+
+        @include mobile {
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            row-gap: 10px;
+            column-gap: 10px;
+            margin-left: 100px; /* отступ равный ширине логотипа + отступ */
+            width: calc(100% - 100px); /* занимает оставшуюся ширину */
+        }
+
+        @include small-mobile {
+            position: fixed;
+            right: -100%;
+            top: 0;
+            width: 100%;
+            background-color: $color-purple;
+            padding: 62px 0 73px 0;
+            display: block;
+            z-index: 999;
+            visibility: hidden;
+            transition: transform .5s, visibility .5s;
+        }
+    }
+
+    @include small-mobile {
+        .header__button-login,
+        .header__button-sign-up {
+            padding-left: 12px;
+            height: 33px;
+            width: 100%;
+            font: {
+                size: 15px;
+                weight: 500;
+            }
+        }
+    }
+
+    &__actions {
+        @include d-flex($align: center);
+        gap: 9px;
+        flex-shrink: 0;
+
+        @include small-mobile {
+            @include p-absolute($vertical-value: 177px);
+            padding: 7px 15px;
+            display: block;
+        }
+    }
+
+    &__button-login {
+        color: #606060;
+        @include button-base($color: transparent);
+
+        @include tablet {
+            @include button-base($height: 45px, $padding-inline: 19px, $font-size: 13px, $color: transparent);
+        }
+
+        @include small-mobile {
+            @include button-base($height: 45px, $padding-inline: 17px, $font-size: 13px, $color: transparent);
+            color: $color-light;
+        }
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    &__button-sign-up {
+        color: $color-light;
+        border-radius: 18px;
+        @include button-base;
+
+        @include tablet {
+            @include button-base($height: 45px, $padding-inline: 19px, $font-size: 13px);
+            border-radius: 13px;
+        }
+
+        @include small-mobile {
+            @include button-base($height: 45px, $padding-inline: 17px, $font-size: 13px, $color: transparent);
+        }
+    }
+}

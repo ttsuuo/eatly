@@ -1,0 +1,64 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+%bottom-line {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $color-grey;
+    z-index: 998;
+
+    @include small-mobile {
+      left: -30px;
+      right: -30px;
+    }
+  }
+}
+
+%hover-scale {
+  transition: $transition-duration;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+%top-line {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    height: 1px;
+    width: 54px;
+    background-color: $color-grey;
+
+    @include tablet {
+      top: 23px;
+      width: 39px;
+    }
+
+    @include mobile {
+      top: 21px;
+      width: 33px;
+    }
+  }
+
+  @include small-mobile {
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: $color-dark;
+      margin: {
+        left: 53px;
+        top: -9px;
+      }
+      width: 33px;
+    }
+  }
+}

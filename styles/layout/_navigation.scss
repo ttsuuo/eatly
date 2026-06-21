@@ -1,0 +1,72 @@
+@use '../utils' as *;
+
+.nav {
+    @include mobile {
+        order: 1;
+    }
+
+    &__list {
+        margin-left: 90px;
+        display: flex;
+        column-gap: 53px;
+        list-style: none;
+        padding: 0 0 0 0;
+
+        @include tablet {
+            margin-left: 50px;
+            column-gap: 38px;
+        }
+
+        @include mobile {
+            margin: 0 0 0 0;
+        }
+
+        @include small-mobile {
+            margin-left: 25px;
+            display: block;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: #606060;
+        font: {
+            size: 18px;
+            weight: 500;
+        }
+
+        &:hover {
+            color: $color-purple;
+        }
+
+        @include tablet {
+            padding: 2px 0;
+            font-size: 15px;
+            display: block;
+
+            &:hover {
+                color: #606060;
+            }
+
+            &:active {
+                color: $color-purple;
+            }
+        }
+
+        @include small-mobile {
+            padding: 2px 0;
+            color: $color-light;
+            font-size: 15px;
+            display: block;
+
+            &:hover {
+                color: #f9f9f9;
+            }
+        }
+
+        &.is-current {
+            color: $color-purple;
+            font-weight: 600;
+        }
+    }
+}
